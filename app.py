@@ -6,7 +6,7 @@ import threading
 import time
 
 
-
+#test
 def execute_db(fname, sql_cmd):
     conn = sqlite3.connect(fname)
     c = conn.cursor()
