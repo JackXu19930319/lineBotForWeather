@@ -144,9 +144,9 @@ from linebot.models import *
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('uiQtFf1d/6oqmtGJPxDyiEf0M8CZDk0hgotBCwgIpjfSBU9A0F9HRoOew+vdhVwVWy9dOnO0fK0tAbv/c8FyKqpKpoj4zaIzTjfZVyzyrbF9Xxd9b2JoqimfVriTodGuDWnAQtgY8F21dXgQzq/ywgdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('your LineBotApi')
 # Channel Secret
-handler = WebhookHandler('f11a9b1f7bf698689f54103b247b7083')
+handler = WebhookHandler('your WebhookHandler')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -168,11 +168,7 @@ def callback():
 def handle_message(event):
     db_name = 'db.sqlite'
     weather()
-    # into_many_data(db_name)
     updata(db_name)
-    #message = TextSendMessage(text=event.message.text)
-    #if event.message.text == '我是誰？':
-    #    message = TextSendMessage(text='你是我最愛的小寶貝 <3 要乖喔～ 再過幾天就去陪你囉') #回話function
     id=event.message.text
     message=TextSendMessage(text=select_data1(id,db_name))
     line_bot_api.reply_message(event.reply_token, message)
